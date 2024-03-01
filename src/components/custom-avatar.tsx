@@ -1,9 +1,12 @@
+import { getNameInitials } from "@/utilities";
 import { Avatar as AntdAvatar, AvatarProps } from "antd";
+import React from "react";
 
-const CustomAvatar: React.FC<{
-  rest: AvatarProps;
+type Props = AvatarProps & {
   name?: string;
-}> = ({ name, ...rest }) => {
+};
+
+const CustomAvatar: React.FC<Props> = ({ name, style, ...rest }) => {
   return (
     <AntdAvatar
       alt={name}
@@ -13,10 +16,11 @@ const CustomAvatar: React.FC<{
         display: "flex",
         alignItems: "center",
         border: "none",
+        ...style,
       }}
       {...rest}
     >
-      {name}
+      {getNameInitials(name || "")}
     </AntdAvatar>
   );
 };
