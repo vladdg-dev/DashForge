@@ -1,7 +1,6 @@
 import { CalendarOutlined } from "@ant-design/icons";
 import { Badge, Card, List } from "antd";
 import { Text } from "../text";
-import { useState } from "react";
 import UpcomingEventsSkeleton from "../skeleton/UpcomingEventsSkeleton";
 import { getDate } from "@/utilities/helpers";
 import { useList } from "@refinedev/core";
@@ -30,8 +29,6 @@ const UpcomingEvents = () => {
     },
   });
 
-  const [isLoading, setIsLoading] = useState(false);
-
   return (
     <Card
       style={{ height: "100%", padding: "8px 16px" }}
@@ -44,7 +41,7 @@ const UpcomingEvents = () => {
         </div>
       }
     >
-      {isLoading ? (
+      {eventsLoading ? (
         <List
           itemLayout="horizontal"
           dataSource={Array.from({ length: 5 }).map((_, index) => ({
@@ -75,7 +72,7 @@ const UpcomingEvents = () => {
           }}
         />
       )}
-      {!isLoading && data?.data.length === 0 && (
+      {!eventsLoading && data?.data.length === 0 && (
         <span
           style={{
             display: "flex",
