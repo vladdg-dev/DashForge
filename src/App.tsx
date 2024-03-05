@@ -21,6 +21,7 @@ import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
 import { Home, Register, Login, ForgotPassword, Companies } from "./pages";
 import Layout from "./components/layout";
 import { resources } from "./config/resources";
+import { CreateCompany } from "./pages/companies/CreateCompany";
 
 function App() {
   return (
@@ -61,7 +62,10 @@ function App() {
                   }
                 >
                   <Route index element={<Home />} />
-                  <Route path="/companies" element={<Companies />} />
+                  <Route path="/companies">
+                    <Route index element={<Companies />} />
+                    <Route path="new" element={<CreateCompany />} />
+                  </Route>
                 </Route>
               </Routes>
               <RefineKbar />
